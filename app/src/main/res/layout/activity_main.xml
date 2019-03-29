@@ -43,7 +43,7 @@
             android:textSize="20dp"
             android:textStyle="bold" />
         <ListView
-            android:id="@+id/listquan"
+            android:id="@+id/dataView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

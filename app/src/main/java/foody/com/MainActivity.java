@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public void init() {
         txtsearch = findViewById(R.id.txtsearch);
         btnsearch = findViewById(R.id.btnsearch);
-        dataView = findViewById(R.id.listquan);
+        dataView = findViewById(R.id.dataView);
         mySQLConnect = new MySQLConnect(MainActivity.this);
     }
 }
