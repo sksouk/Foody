@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void init() {
-        txtsearch = (EditText)findViewById(R.id.txtsearch);
-        btnsearch = (Button)findViewById(R.id.btnsearch);
-        dataView = (ListView)findViewById(R.id.listquan);
+        txtsearch = findViewById(R.id.txtsearch);
+        btnsearch = findViewById(R.id.btnsearch);
+        dataView = findViewById(R.id.listquan);
         mySQLConnect = new MySQLConnect(MainActivity.this);
     }
 }

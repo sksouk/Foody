@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLConnect {
+
     private final Activity main;
     private List<String> list;
     private String URL = "http://157.230.42.137/", GET_URL="android/get_quan.php";
