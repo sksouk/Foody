@@ -11,6 +11,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -20,6 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +30,7 @@ public class MySQLConnect {
 
     private final Activity main;
     private List<String> list;
-    public String URL = "http://157.230.42.137/", GET_URL = "android/get_quan.php";
+    private String URL = "http://157.230.42.137/", GET_URL = "android/get_quan.php?status=0", SENT_URL = "android/sent_quan.php";
 
     public MySQLConnect(){
         main = null;
@@ -76,5 +79,26 @@ public class MySQLConnect {
             }
 
         } catch (JSONException e) {e.printStackTrace();}
+    }
+    public void sentData(String value){
+        StrictMode.enableDefaults();
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
+        try{
+            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+            nameValuePairs.add(new BasicNameValuePair("isAdd","true"));
+            nameValuePairs.add(new BasicNameValuePair("ten_quan", value));
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(URL + SENT_URL);//Change IP to WebServer
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+            httpclient.execute(httppost);
+
+            Toast.makeText(main, "Completed.", Toast.LENGTH_LONG).show();
+        }catch(Exception e){
+            Toast.makeText(main, e.getMessage().toString(), Toast.LENGTH_LONG).show();
+        }
     }
 }
