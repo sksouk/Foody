@@ -30,7 +30,7 @@
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:text="tìm quán"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -40,10 +40,10 @@
             android:layout_height="wrap_content"
             android:text="------------- TÊN QUÁN --------------"
             android:textAlignment="center"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
         <ListView
-            android:id="@+id/dataView"
+            android:id="@+id/ListQuan"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
