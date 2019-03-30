@@ -6,11 +6,9 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ListView;
 
 import com.google.firebase.FirebaseApp;
@@ -39,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(this);
 
-
         init();
         update();
 
@@ -50,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 items.add(txtadd.getText().toString());
                 adt.notifyDataSetChanged();
                 txtadd.setText("");
-
-
             }
         });
         bt1.setOnClickListener(new View.OnClickListener() {
