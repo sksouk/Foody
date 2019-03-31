@@ -49,7 +49,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView tv_menu_name;
         ImageView img_menu_thumbnail;
         TextView gia_menu;
-        CardView cardView ;
         Button btncong;
         Button btntru;
         TextView slmenu;
@@ -91,10 +90,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             addcart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (addcart.getText() == "ADD"){
-                        addcart.setText("✔︎");
-                    }else{
+                    if (addcart.getText() == "✓"){
                         addcart.setText("ADD");
+                    }else{
+                        addcart.setText("✓");
                     }
                 }
             });
