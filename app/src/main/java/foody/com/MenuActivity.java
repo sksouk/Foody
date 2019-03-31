@@ -32,7 +32,6 @@ public class MenuActivity extends AppCompatActivity {
         lstMenu.add(new menu("Test menu 13","Categorie","Description menu","20000",R.drawable.img6));
         lstMenu.add(new menu("Test menu 14","Categorie","Description menu","25000",R.drawable.img7));
 
-
         RecyclerView myrv = findViewById(R.id.recyclerview_id);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this,lstMenu);
         myrv.setLayoutManager(new GridLayoutManager(this,3));
