@@ -27,6 +27,7 @@
             android:id="@+id/edit_ktx"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#FF9800"
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="kí túc xá" />
@@ -36,17 +37,27 @@
             android:id="@+id/editphong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#FF9800"
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="Phóng" />
         <TextView
 
             android:text="MY MENU :"
+            android:textColor="#FF9800"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="530dp" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FF9800"
+            android:text="Đặt" />
+
     </LinearLayout>
 </RelativeLayout>
