@@ -53,6 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Button btncong;
         Button btntru;
         TextView slmenu;
+        Button addcart;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -64,6 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             btncong = (Button) itemView.findViewById(R.id.btn_congmenu);
             btntru = (Button) itemView.findViewById(R.id.btn_trumenu);
             slmenu = (TextView) itemView.findViewById(R.id.txt_slmenu);
+            addcart = (Button) itemView.findViewById(R.id.btn_addcart);
 
             btncong.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,7 +88,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     }
                 }
             });
-
+            addcart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (addcart.getText() == "ADD"){
+                        addcart.setText("✔︎");
+                    }else{
+                        addcart.setText("ADD");
+                    }
+                }
+            });
         }
     }
 }
