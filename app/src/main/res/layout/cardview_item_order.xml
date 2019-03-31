@@ -23,8 +23,9 @@
             android:textColor="#2d2d2d"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:gravity="center"
-            android:layout_width="165sp"
+            android:paddingLeft="10sp"
+            android:gravity="center_vertical"
+            android:layout_width="145sp"
             android:layout_height="match_parent"
             android:text="menu name"/>
         <TextView
