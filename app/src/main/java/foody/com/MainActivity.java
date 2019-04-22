@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnadd;
     private Button bt1;
     private Button bt2;
+    private Context context;
     private MySQLConnect mySQLConnect;
     private ListView ListQuan;
     private List<String> items;

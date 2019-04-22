@@ -1,57 +1,58 @@
 package foody.com;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Toast;
-import android.widget.EditText;
-import android.widget.Button;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private Context mContext ;
+    Button bt;
+
+    // Creating Volley RequestQueue.
+    RequestQueue requestQueue;
+
+    // Create string variable to hold the EditText Value.
+    String FirstNameHolder, LastNameHolder, EmailHolder ;
+
+    // Creating Progress dialog.
+    ProgressDialog progressDialog;
+
+    // Storing server url into String variable.
+    String HttpUrl = "http://hoctiengviet.net/food_order/Get_Order.php";
     private List<menu> mData ;
     private AdapterView.OnItemClickListener mListener;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
-
     }
-    RequestQueue requestQueue;
 
-    ProgressDialog progressDialog;
-
-    // Storing server url into String variable.
-    String HttpUrl = "http://hoctiengviet.net/food_order/Get_Order.php";
 
     public RecyclerViewAdapter(Context mContext, List<menu> mData) {
         this.mContext = mContext;
         this.mData = mData;
+
     }
     public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
         mListener = listener;
@@ -90,9 +91,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Button btntru;
         TextView slmenu;
         Button addcart;
+        EditText dc;
+        TextView tvdc;
+        Button btsave = itemView.findViewById(R.id.btnsave);
 
+        RequestQueue queue = Volley.newRequestQueue(MySuperAppApplication.getContext());
+        public MyViewHolder(final View itemView) {
 
-        public MyViewHolder(View itemView) {
             super(itemView);
 
             tv_menu_name = (TextView) itemView.findViewById(R.id.menu_name_id);
@@ -103,6 +108,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             btntru = (Button) itemView.findViewById(R.id.btn_trumenu);
             slmenu = (TextView) itemView.findViewById(R.id.txt_slmenu);
             addcart = (Button) itemView.findViewById(R.id.btn_addcart);
+             tvdc = itemView.findViewById(R.id.ttdc);
+         //   dc = (EditText) itemView.findViewById(R.id.editdiachi);
 
             btncong.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,7 +132,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     }
                 }
             });
+            btsave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    String rs = btsave.getText().toString();
+                    tvdc.setText(rs);
+                }
+            });
             addcart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -133,12 +147,46 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         addcart.setText("ADD");
                     }else{
 
-                        addcart.setText(tv_menu_name.getText());
+                        String HttpUrl = "http://hoctiengviet.net/food_order/iscart.php";
+                        StringRequest postRequest = new StringRequest(Request.Method.POST, HttpUrl,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.d("respon", response);
+                                        Toast.makeText(MySuperAppApplication.getContext(), response, Toast.LENGTH_LONG).show();
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(MySuperAppApplication.getContext(), error.toString(), Toast.LENGTH_LONG).show();
+
+                                    }
+                                }
+                        )
+                        {
+                            @Override
+                            protected Map<String, String> getParams()
+                            {
+                                Map<String, String> params = new HashMap<String, String>();
+                               // params.put("name", "Alif");
+                               // params.put("domain", "http://itsalif.info");
+                                params.put("ten_menu", tv_menu_name.getText().toString());
+                                params.put("giamenu", gia_menu.getText().toString());
+                                params.put("diachi", tvdc.getText().toString());
+                                params.put("soluong", slmenu.getText().toString());
+                                return params;
+                            }
+                        };
+                        queue.add(postRequest);
+
+                               // addcart.setText(tv_menu_name.getText());
 
                     }
                 }
             });
-        }
 
+        }
     }
+
 }

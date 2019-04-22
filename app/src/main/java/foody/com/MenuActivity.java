@@ -1,5 +1,6 @@
 package foody.com;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import java.util.List;
 public class MenuActivity extends AppCompatActivity {
     List<menu> lstMenu ;
     private RecyclerViewAdapter mAdapter;
+    ImageButton btn_cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,18 @@ public class MenuActivity extends AppCompatActivity {
         myrv.setLayoutManager(new GridLayoutManager(this,3));
         myrv.setAdapter(myAdapter);
 
+        btn_cart = findViewById(R.id.btn_cart);
+        btn_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btncartclick();
+            }
+        });
+
+    }
+    private void btncartclick(){
+        Intent intentOrder = new Intent(MenuActivity.this,Order.class);
+        startActivity(intentOrder);
     }
 
 }

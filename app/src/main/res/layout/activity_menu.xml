@@ -34,7 +34,34 @@
             android:src="@drawable/cart1" />
 
     </LinearLayout>
-
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/ttdc"
+            android:text="Dia Chi : "
+            android:layout_weight="2"
+            android:gravity="right"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/editdiachi"
+            android:layout_weight="1"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:hint="KTX, Phong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btnsave"
+            android:text="save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_id"
         android:paddingTop="10dp"
