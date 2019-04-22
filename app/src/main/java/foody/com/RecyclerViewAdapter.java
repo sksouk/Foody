@@ -7,21 +7,58 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Toast;
+import android.widget.EditText;
+import android.widget.Button;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private Context mContext ;
     private List<menu> mData ;
+    private AdapterView.OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+
+    }
+    RequestQueue requestQueue;
+
+    ProgressDialog progressDialog;
+
+    // Storing server url into String variable.
+    String HttpUrl = "http://hoctiengviet.net/food_order/Get_Order.php";
 
     public RecyclerViewAdapter(Context mContext, List<menu> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
-
+    public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
+        mListener = listener;
+    }
+    public RecyclerViewAdapter(ArrayList<menu> exampleList) {
+        mData = exampleList;
+    }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -53,6 +90,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Button btntru;
         TextView slmenu;
         Button addcart;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -87,16 +125,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     }
                 }
             });
+
             addcart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (addcart.getText() == "✓"){
                         addcart.setText("ADD");
                     }else{
-                        addcart.setText("✓");
+
+                        addcart.setText(tv_menu_name.getText());
+
                     }
                 }
             });
         }
+
     }
 }

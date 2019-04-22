@@ -16,9 +16,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".dsquan"></activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".MenuActivity" />
+        <activity android:name=".Order" />
         <activity
-            android:name=".Order"
+            android:name=".MenuActivity"
             android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

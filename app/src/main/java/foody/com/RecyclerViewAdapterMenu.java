@@ -20,6 +20,7 @@ public class RecyclerViewAdapterMenu extends RecyclerView.Adapter<RecyclerViewAd
     public RecyclerViewAdapterMenu(Context mContext_order, List<order_class> mData_order) {
         this.mContext_order = mContext_order;
         this.mData_order = mData_order;
+
     }
 
     @NonNull
